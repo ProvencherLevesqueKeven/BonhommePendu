@@ -85,6 +85,18 @@ export default function Home() {
         setGuessedLetters((prev) => [...prev, event.letter]);
         break;
       }
+       case "Won": {
+        setGameState(GameState.Won);
+        break;
+      }
+      case "Lost": {
+        setGameState(GameState.Lost);
+        setWronglyGuessedWord(event.word);
+        // Pour afficher les yeux!
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setNbWrongGuesses((prev) => prev + 1);
+        break;
+      }
     }
 
     if(event.events){
